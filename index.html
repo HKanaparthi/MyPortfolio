@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsha - AI & Cloud Enthusiast</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8fafc;
+            transition: all 0.3s ease;
+        }
+
+        body.dark {
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark header {
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #3b82f6;
+        }
+
+        body.dark .nav-links a {
+            color: #94a3b8;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #64748b;
+            transition: color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            color: #3b82f6;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero .highlight {
+            color: #3b82f6;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+            border: 2px solid #3b82f6;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
+        }
+
+        .btn-secondary:hover {
+            background: #3b82f6;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .floating-icons {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .icon-1 { background: #10b981; top: 10%; right: -10px; animation-delay: 0s; }
+        .icon-2 { background: #f59e0b; bottom: 20%; left: -20px; animation-delay: 1s; }
+        .icon-3 { background: #ef4444; top: 60%; right: -30px; animation-delay: 2s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #3b82f6;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        body.dark .section-header h2 {
+            color: #f1f5f9;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark .stat {
+            background: #1e293b;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark .skill-category {
+            background: #1e293b;
+        }
+
+        .skill-category h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: #1e293b;
+        }
+
+        body.dark .skill-category h3 {
+            color: #f1f5f9;
+        }
+
+        .skill-category .icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .programming { background: #3b82f6; }
+        .ai-ml { background: #10b981; }
+        .cloud { background: #f59e0b; }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .skill-name {
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .skill-level {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            border-radius: 3px;
+            transition: width 2s ease;
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tech-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        body.dark .tech-item {
+            background: #1e293b;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .tech-item i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #3b82f6;
+        }
+
+        .tech-item span {
+            display: block;
+            font-weight: 500;
+            color: #64748b;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        body.dark .project-card {
+            background: #1e293b;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+
+        body.dark .project-title {
+            color: #f1f5f9;
+        }
+
+        .project-description {
+            color: #64748b;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tag {
+            background: #f1f5f9;
+            color: #64748b;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        body.dark .project-tag {
+            background: #334155;
+            color: #94a3b8;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        .project-year {
+            color: #94a3b8;
+            font-size: 0.8rem;
+            margin-left: auto;
+        }
+
+        /* Publications Section */
+        .publications-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .publication-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark .publication-item {
+            background: #1e293b;
+        }
+
+        .publication-title {
+            color: #3b82f6;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-decoration: none;
+        }
+
+        .publication-title:hover {
+            text-decoration: underline;
+        }
+
+        .publication-year {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            float: right;
+        }
+
+        /* Certifications */
+        .certifications {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .cert-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark .cert-card {
+            background: #1e293b;
+        }
+
+        .cert-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .cert-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+
+        body.dark .cert-title {
+            color: #f1f5f9;
+        }
+
+        .cert-org {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark .contact-item {
+            background: #1e293b;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .contact-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+
+        body.dark .contact-title {
+            color: #f1f5f9;
+        }
+
+        .contact-value {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .contact-value:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-stack {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hide sections initially for animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#home" class="logo">Harsha</a>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#publications" class="nav-link">Publications</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Hey,<br>I am <span class="highlight">Harsha</span></h1>
+                        <p>I am a passionate AI & Cloud Enthusiast.</p>
+                        <div class="hero-buttons">
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-download"></i>
+                                Download Resume
+                            </a>
+                            <a href="#contact" class="btn btn-secondary">
+                                <i class="fas fa-envelope"></i>
+                                Get in Touch
+                            </a>
+                        </div>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="./Firstpic.jpeg">
+                        <div class="floating-icons icon-1"><i class="fas fa-code"></i></div>
+                        <div class="floating-icons icon-2"><i class="fas fa-cloud"></i></div>
+                        <div class="floating-icons icon-3"><i class="fas fa-brain"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="fade-in">
+            <div class="container">
+                <div class="section-header" >
+                    <h2>Who I Am</h2>
+                    <p>A Computer Science Student focusing on Artificial Intelligence with expertise in cloud technologies and modern development practices.</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>I'm passionate about leveraging artificial intelligence and cloud computing to solve real-world problems. My journey in technology has led me to explore various domains from machine learning to distributed systems.</p>
+                        <p>Currently pursuing advanced studies in Computer Science with a focus on AI research and practical applications. I enjoy contributing to open-source projects and sharing knowledge through publications and community engagement.</p>
+                        <div class="stats">
+                            <div class="stat">
+                                <div class="stat-number">10+</div>
+                                <div class="stat-label">Projects Completed</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">2</div>
+                                <div class="stat-label">Publications</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">6</div>
+                                <div class="stat-label">Certifications</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">3</div>
+                                <div class="stat-label">Internship Experience</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <img src="./Secondpic.jpeg" alt="About Harsha">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Skills & Expertise</h2>
+                    <p>A comprehensive overview of my technical skills and areas of expertise</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3><span class="icon programming"><i class="fas fa-code"></i></span> Programming</h3>
+                        <div class="skill-item">
+                            <span class="skill-name">Python</span>
+                            <span class="skill-level">95%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 95%"></div></div>
+                        
+                        <div class="skill-item">
+                            <span class="skill-name">JavaScript</span>
+                            <span class="skill-level">90%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+                        
+                        <div class="skill-item">
+                            <span class="skill-name">Java</span>
+                            <span class="skill-level">85%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                        
+                        <div class="skill-item">
+                            <span class="skill-name">C++</span>
+                            <span class="skill-level">80%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3><span class="icon ai-ml"><i class="fas fa-brain"></i></span> AI & ML</h3>
+                        <div class="skill-item">
+                            <span class="skill-name">TensorFlow</span>
+                            <span class="skill-level">90%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+                        
+                        <div class="skill-item">
+                            <span class="skill-name">PyTorch</span>
+                            <span class="skill-level">85%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                        
+                        <div class="skill-item">
+                            <span class="skill-name">Scikit-learn</span>
+                            <span class="skill-level">95%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 95%"></div></div>
+                        
+                        <div class="skill-item">
+                            <span class="skill-name">OpenCV</span>
+                            <span class="skill-level">80%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3><span class="icon cloud"><i class="fas fa-cloud"></i></span> Cloud & DevOps</h3>
+                        <div class="skill-item">
+                            <span class="skill-name">AWS</span>
+                            <span class="skill-level">90%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+                        
+                        <div class="skill-item">
+                            <span class="skill-name">Docker</span>
+                            <span class="skill-level">85%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                        
+                        <div class="skill-item">
+                            <span class="skill-name">Kubernetes</span>
+                            <span class="skill-level">75%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div>
+                        
+                        <div class="skill-item">
+                            <span class="skill-name">Google Cloud</span>
+                            <span class="skill-level">80%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
+                    </div>
+                </div>
+
+                <div class="section-header" style="margin-top: 4rem;">
+                    <h3>Technologies I Work With</h3>
+                </div>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <i class="fab fa-python"></i>
+                        <span>Python</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-js-square"></i>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-react"></i>
+                        <span>React</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-node-js"></i>
+                        <span>Node.js</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-aws"></i>
+                        <span>AWS</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-docker"></i>
+                        <span>Docker</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-git-alt"></i>
+                        <span>Git</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-database"></i>
+                        <span>MongoDB</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+            <!-- Add more sections here like Projects, Publications, Contact, etc. -->
+        <!-- Projects Section -->
+        <section id="projects" class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Featured Projects</h2>
+                    <p>A showcase of my recent work in AI, machine learning, and cloud computing</p>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">AI-Powered Chatbot</h3>
+                            <p class="project-description">Developed an intelligent conversational AI using NLP and deep learning techniques. Integrated with cloud services for scalable deployment.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">TensorFlow</span>
+                                <span class="project-tag">AWS</span>
+                                <span class="project-tag">Flask</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i> Live Demo
+                                </a>
+                                <span class="project-year">2024</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Stock Market Predictor</h3>
+                            <p class="project-description">Machine learning model for stock price prediction using LSTM networks and technical indicators. Deployed on cloud infrastructure.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">PyTorch</span>
+                                <span class="project-tag">Pandas</span>
+                                <span class="project-tag">Docker</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i> Demo
+                                </a>
+                                <span class="project-year">2024</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Cloud Infrastructure Automation</h3>
+                            <p class="project-description">Automated cloud infrastructure deployment using Infrastructure as Code principles with Terraform and AWS services.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Terraform</span>
+                                <span class="project-tag">AWS</span>
+                                <span class="project-tag">CI/CD</span>
+                                <span class="project-tag">Kubernetes</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-book"></i> Documentation
+                                </a>
+                                <span class="project-year">2023</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Computer Vision System</h3>
+                            <p class="project-description">Real-time object detection and classification system using computer vision techniques for industrial applications.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">OpenCV</span>
+                                <span class="project-tag">YOLO</span>
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">TensorFlow</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-play"></i> Video Demo
+                                </a>
+                                <span class="project-year">2023</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Full-Stack Web Application</h3>
+                            <p class="project-description">Modern web application with React frontend and Node.js backend, deployed on cloud infrastructure with CI/CD pipeline.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">React</span>
+                                <span class="project-tag">Node.js</span>
+                                <span class="project-tag">MongoDB</span>
+                                <span class="project-tag">AWS</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i> Live Site
+                                </a>
+                                <span class="project-year">2023</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">IoT Data Analytics Platform</h3>
+                            <p class="project-description">Real-time data processing and analytics platform for IoT devices using cloud services and machine learning.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">Apache Kafka</span>
+                                <span class="project-tag">AWS IoT</span>
+                                <span class="project-tag">Elasticsearch</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-chart-bar"></i> Dashboard
+                                </a>
+                                <span class="project-year">2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Publications & Research</h2>
+                    <p>My contributions to the academic and research community</p>
+                </div>
+                <div class="publications-list">
+                    <div class="publication-item">
+                        <span class="publication-year">2024</span>
+                        <a href="#" class="publication-title">
+                            "Advanced Neural Networks for Real-time Object Detection in Edge Computing Environments"
+                        </a>
+                        <div style="clear: both; margin-top: 0.5rem;">
+                            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 0.5rem;">
+                                International Conference on Artificial Intelligence and Machine Learning (ICAIML 2024)
+                            </p>
+                            <p style="color: #64748b; font-size: 0.85rem;">
+                                This paper presents a novel approach to optimizing neural network architectures for real-time object detection in resource-constrained edge computing environments, achieving 40% improvement in inference speed while maintaining accuracy.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="publication-item">
+                        <span class="publication-year">2023</span>
+                        <a href="#" class="publication-title">
+                            "Cloud-Native Machine Learning Pipelines: A Comparative Study of Deployment Strategies"
+                        </a>
+                        <div style="clear: both; margin-top: 0.5rem;">
+                            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 0.5rem;">
+                                Journal of Cloud Computing and Applications, Vol. 15, Issue 3
+                            </p>
+                            <p style="color: #64748b; font-size: 0.85rem;">
+                                A comprehensive analysis of different cloud-native deployment strategies for machine learning models, comparing performance, scalability, and cost-effectiveness across major cloud platforms.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-header" style="margin-top: 4rem;">
+                    <h3>Certifications & Achievements</h3>
+                </div>
+                <div class="certifications">
+                    <div class="cert-card">
+                        <div class="cert-icon" style="background: #ff9900;">
+                            <i class="fab fa-aws"></i>
+                        </div>
+                        <div class="cert-title">AWS Solutions Architect</div>
+                        <div class="cert-org">Amazon Web Services</div>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-icon" style="background: #4285f4;">
+                            <i class="fab fa-google"></i>
+                        </div>
+                        <div class="cert-title">Google Cloud Professional</div>
+                        <div class="cert-org">Google Cloud Platform</div>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-icon" style="background: #0078d4;">
+                            <i class="fab fa-microsoft"></i>
+                        </div>
+                        <div class="cert-title">Azure AI Engineer</div>
+                        <div class="cert-org">Microsoft Azure</div>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-icon" style="background: #ff6f00;">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="cert-title">TensorFlow Developer</div>
+                        <div class="cert-org">TensorFlow</div>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-icon" style="background: #326ce5;">
+                            <i class="fas fa-dharmachakra"></i>
+                        </div>
+                        <div class="cert-title">Kubernetes Administrator</div>
+                        <div class="cert-org">Cloud Native Computing Foundation</div>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-icon" style="background: #e97627;">
+                            <i class="fab fa-docker"></i>
+                        </div>
+                        <div class="cert-title">Docker Certified Associate</div>
+                        <div class="cert-org">Docker Inc.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Get in Touch</h2>
+                    <p>Let's connect and discuss opportunities, collaborations, or just have a chat about technology</p>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon" style="background: #3b82f6;">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-title">Email</div>
+                        <a href="mailto:harsha@example.com" class="contact-value">harsha@example.com</a>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon" style="background: #0077b5;">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="contact-title">LinkedIn</div>
+                        <a href="#" class="contact-value">linkedin.com/in/harsha</a>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon" style="background: #333;">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="contact-title">GitHub</div>
+                        <a href="#" class="contact-value">github.com/harsha</a>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon" style="background: #1da1f2;">
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                        <div class="contact-title">Twitter</div>
+                        <a href="#" class="contact-value">@harsha_dev</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background: #1e293b; color: #94a3b8; text-align: center; padding: 2rem 0; margin-top: 4rem;">
+        <div class="container">
+            <p>&copy; 2024 Harsha. All rights reserved. Built with passion and modern web technologies.</p>
+            <div style="margin-top: 1rem;">
+                <a href="#" style="color: #94a3b8; text-decoration: none; margin: 0 1rem;">Privacy Policy</a>
+                <a href="#" style="color: #94a3b8; text-decoration: none; margin: 0 1rem;">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            const icon = themeToggle.querySelector('i');
+            if (body.classList.contains('dark')) {
+                icon.className = 'fas fa-sun';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                icon.className = 'fas fa-moon';
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+
+        // Check for saved theme preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark');
+            themeToggle.querySelector('i').className = 'fas fa-sun';
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active navigation highlighting
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Skill bar animation
+        const skillBars = document.querySelectorAll('.skill-progress');
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBar = entry.target;
+                    const width = skillBar.style.width;
+                    skillBar.style.width = '0%';
+                    setTimeout(() => {
+                        skillBar.style.width = width;
+                    }, 200);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        skillBars.forEach(bar => {
+            skillObserver.observe(bar);
+        });
+
+        // Typing effect for hero text
+        const heroText = document.querySelector('.hero h1');
+        if (heroText) {
+            const text = heroText.innerHTML;
+            heroText.innerHTML = '';
+            let i = 0;
+            const typeWriter = () => {
+                if (i < text.length) {
+                    if (text.charAt(i) === '<') {
+                        const tagEnd = text.indexOf('>', i);
+                        heroText.innerHTML += text.substring(i, tagEnd + 1);
+                        i = tagEnd + 1;
+                    } else {
+                        heroText.innerHTML += text.charAt(i);
+                        i++;
+                    }
+                    setTimeout(typeWriter, 50);
+                }
+            };
+            setTimeout(typeWriter, 1000);
+        }
+
+        // Parallax effect for floating icons
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelectorAll('.floating-icons');
+            
+            parallax.forEach((element, index) => {
+                const speed = 0.2 + (index * 0.1);
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Add hover effects to project cards
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
+   
