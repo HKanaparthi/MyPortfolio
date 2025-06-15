@@ -665,6 +665,245 @@
         .contact-value:hover {
             text-decoration: underline;
         }
+        .experience-timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.experience-timeline::before {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+}
+
+.experience-item {
+    position: relative;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.experience-item::before {
+    content: '';
+    position: absolute;
+    left: 21px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: #3b82f6;
+    border: 4px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+    z-index: 1;
+}
+
+body.dark .experience-item::before {
+    border-color: #0f172a;
+}
+
+.experience-date {
+    min-width: 120px;
+    padding-top: 0.5rem;
+}
+
+.date-badge {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.experience-content {
+    flex: 1;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+body.dark .experience-content {
+    background: #1e293b;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.experience-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 15px 35px rgba(59, 130, 246, 0.1);
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.experience-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+
+body.dark .experience-title {
+    color: #f1f5f9;
+}
+
+.company-info {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.company-name {
+    display: block;
+    font-weight: 600;
+    color: #3b82f6;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.location {
+    display: block;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.experience-description p {
+    color: #64748b;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.experience-highlights {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+.experience-highlights li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+.experience-highlights li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: #3b82f6;
+    font-weight: bold;
+}
+
+.experience-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-tag {
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    color: #475569;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+body.dark .skill-tag {
+    background: linear-gradient(135deg, #334155, #475569);
+    color: #94a3b8;
+    border-color: #475569;
+}
+
+.skill-tag:hover {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .experience-timeline::before {
+        left: 15px;
+    }
+    
+    .experience-item {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .experience-item::before {
+        left: 6px;
+    }
+    
+    .experience-date {
+        min-width: auto;
+        align-self: flex-start;
+        margin-left: 2rem;
+    }
+    
+    .experience-content {
+        margin-left: 0;
+        padding: 1.5rem;
+    }
+    
+    .experience-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .company-info {
+        text-align: left;
+    }
+    
+    .experience-skills {
+        gap: 0.4rem;
+    }
+    
+    .skill-tag {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+    }
+}
+
+/* Animation for experience items */
+.experience-item {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.6s ease;
+}
+
+.experience-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Stagger animation delay */
+.experience-item:nth-child(1) { transition-delay: 0.1s; }
+.experience-item:nth-child(2) { transition-delay: 0.2s; }
+.experience-item:nth-child(3) { transition-delay: 0.3s; }
+.experience-item:nth-child(4) { transition-delay: 0.4s; }
+.experience-item:nth-child(5) { transition-delay: 0.5s; }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
@@ -733,6 +972,7 @@
                 <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#publications" class="nav-link">Publications</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
@@ -974,7 +1214,118 @@
                 </div>
             </div>
         </section>
+        <section id="experience" class="fade-in">
+    <div class="container">
+        <div class="section-header">
+            <h2>Professional Experience</h2>
+            <p>My journey through various roles in technology, research, and innovation</p>
+        </div>
+        
+        <div class="experience-timeline">
+            <!-- Experience Item 1 -->
+            <div class="experience-item">
+                <div class="experience-date">
+                    <span class="date-badge">2023</span>
+                </div>
+                <div class="experience-content">
+                    <div class="experience-header">
+                        <h3 class="experience-title">AI Intern</h3>
+                        <div class="company-info">
+                            <span class="company-name">Lineysha & Thevan Software Company</span>
+                            <span class="location">Andhra Pradesh, India</span>
+                        </div>
+                    </div>
+                    <div class="experience-description">
+                        <p>Driving innovation in facial recognition technology through the development of a high-accuracy web application for identifying missing children, leveraging CNNs and real-time image processing with Flask and React.</p>
+                        <ul class="experience-highlights">
+                            <li>Collaborated in a team to design and develop a facial recognition web application aimed at identifying
+missing children, achieving 99.41% accuracy using convolutional neural networks (CNNs)</li>
+                            <li>Built and integrated the model into a web application using Flask and React, enabling real-time image
+processing and user interaction.</li>
+                            <li>Preprocessed large image datasets, applied data augmentation, and evaluated model performance using
+precision, recall, and F1-score.</li>
+                            
+                        </ul>
+                    </div>
+                    <div class="experience-skills">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Computer Vision</span>
+                        <span class="skill-tag">CNN</span>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Experience Item 2 -->
+            <div class="experience-item">
+                <div class="experience-date">
+                    <span class="date-badge">2021 - 2022</span>
+                </div>
+                <div class="experience-content">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Intern - RPA & Cloud Computing</h3>
+                        <div class="company-info">
+                            <span class="company-name">AICTE (All India Council for Technical Education)</span>
+                            <span class="location">Remote</span>
+                        </div>
+                    </div>
+                    <div class="experience-description">
+                        <p>Developed and deployed intelligent automation solutions by integrating RPA bots with cloud platforms, leveraging services like AWS EC2, S3, and Lambda to streamline data processing, reporting, and system notifications.</p>
+                        <ul class="experience-highlights">
+                            <li>Created chatbots and automated email workflows using Blue Prism to improve task efficiency and user
+communication.</li>
+                            <li>Gained hands-on experience with AWS services like EC2, S3, and Lambda for deploying and managing
+scalable cloud-based solutions.</li>
+                            <li>Integrated RPA bots with cloud platforms to automate data handling, reporting, and system notifications.</li>
+                            
+                        </ul>
+                    </div>
+                    <div class="experience-skills">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">Terraform</span>
+                        <span class="skill-tag">Microservices</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience Item 3 -->
+            <div class="experience-item">
+                <div class="experience-date">
+                    <span class="date-badge">2022 - 2024</span>
+                </div>
+                <div class="experience-content">
+                    <div class="experience-header">
+                        <h3 class="experience-title">President/Advisor at School Of Competative Coding</h3>
+                        <div class="company-info">
+                            <span class="company-name">Koneru Lakshmaiah University</span>
+                            <span class="location">Andhra Pradesh, India</span>
+                        </div>
+                    </div>
+                    <div class="experience-description">
+                        <p>Developed and deployed machine learning models for predictive analytics, working with large-scale datasets and real-time processing systems.</p>
+                        <ul class="experience-highlights">
+                            <li>Built ML pipelines processing 1M+ data points daily</li>
+                            <li>Improved model accuracy by 30% through feature engineering and hyperparameter tuning</li>
+                            <li>Developed real-time recommendation systems using collaborative filtering</li>
+                            <li>Created data visualization dashboards for stakeholder reporting</li>
+                        </ul>
+                    </div>
+                    <div class="experience-skills">
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Apache Spark</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Data Visualization</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
             <!-- Add more sections here like Projects, Publications, Contact, etc. -->
         <!-- Projects Section -->
         <section id="projects" class="fade-in">
@@ -1430,6 +1781,25 @@
                 document.body.style.opacity = '1';
             }, 100);
         });
+        document.addEventListener('DOMContentLoaded', function() {
+    const experienceItems = document.querySelectorAll('.experience-item');
+    
+    const experienceObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    experienceItems.forEach(item => {
+        experienceObserver.observe(item);
+    });
+});
+
     </script>
 </body>
 </html>
