@@ -717,14 +717,13 @@ body.dark .experience-item::before {
 }
 
 .date-badge {
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    display: inline-block;
+    background: linear-gradient(to right, #3b82f6, #8b5cf6);
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 0.3rem 0.75rem;
     border-radius: 20px;
-    font-size: 0.85rem;
+    margin-left: 40px; /* This is key: pushes badge away from the dot */
     font-weight: 600;
-    white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 .experience-content {
