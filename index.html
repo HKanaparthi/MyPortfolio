@@ -412,7 +412,11 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
         }
-
+        .skills-wrapperrr {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem; /* Padding on left and right */
+}
         body.dark .tech-item {
             background: #1e293b;
         }
@@ -945,6 +949,57 @@ body.dark .skill-tag {
                 grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
             }
         }
+        .skills-griddd {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1.2rem;
+  padding: 1rem 0;
+  align-items: center;
+  justify-items: center;
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.75rem;
+  background: #f9fafb;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.tech-item img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 0.5rem;
+  object-fit: contain;
+}
+
+.tech-item span {
+  font-size: 0.9rem;
+  color: #111827;
+  font-weight: 500;
+}
+
+.tech-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  background: #eef2ff;
+}
+body.dark .skills-griddd .tech-item {
+  background: #1f2937;
+  color: #f3f4f6;
+}
+
+body.dark .skills-griddd .tech-item span {
+  color: #f3f4f6;
+}
+
+body.dark .skills-griddd .tech-item:hover {
+  background: #374151;
+}
 
         /* Smooth scrolling */
         html {
@@ -994,10 +1049,11 @@ body.dark .skill-tag {
                                 <i class="fas fa-download"></i>
                                 Download Resume
                             </a>
-                            <a href="#contact" class="btn btn-secondary">
+                            <a href="mailto:harshakanaparthi03@gmail.com?subject=Contact%20from%20Portfolio&body=Hi%20Harsha%2C" class="btn btn-secondary">
                                 <i class="fas fa-envelope"></i>
                                 Get in Touch
                             </a>
+                            
                         </div>
                         <div class="social-links">
                             <a href="https://www.linkedin.com/in/harsha2003/"><i class="fab fa-linkedin"></i></a>
@@ -1052,6 +1108,7 @@ body.dark .skill-tag {
                 </div>
             </div>
         </section>
+        
 
         <!-- Skills Section -->
         <section id="skills" class="fade-in">
@@ -1062,7 +1119,10 @@ body.dark .skill-tag {
                 </div>
                 <div class="skills-grid">
                     <div class="skill-category">
+                        <div class="skill-bar" style="display: none;"><div class="skill-progress" style="width: 90%"></div></div>
+
                         <h3><span class="icon programming"><i class="fas fa-code"></i></span> Programming</h3>
+                        
                         <div class="skill-item">
                             <span class="skill-name">Python</span>
                             <span class="skill-level">95%</span>
@@ -1213,6 +1273,50 @@ body.dark .skill-tag {
                     </div>
                 </div>
             </div>
+            <div class="skills-wrapperrr">
+
+            <div class="skills-griddd">
+                <!-- Programming -->
+                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C"><span>C</span></div>
+                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++"><span>C++</span></div>
+                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"><span>Java</span></div>
+                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"><span>Python</span></div>
+                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML"><span>HTML</span></div>
+                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS"><span>CSS</span></div>
+                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"><span>JavaScript</span></div>
+                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP"><span>PHP</span></div>
+             
+                <!-- Databases -->
+                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"><span>PostgreSQL</span></div>
+                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL"><span>SQL</span></div>
+                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB"><span>MongoDB</span></div>
+             
+                <!-- Web Technologies -->
+                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React.js"><span>React.js</span></div>
+                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"><span>Node.js</span></div>
+                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" alt="Angular"><span>Angular</span></div>
+                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript"><span>TypeScript</span></div>
+                <div class="tech-item"><img src="https://www.vectorlogo.zone/logos/graphql/graphql-icon.svg" alt="GraphQL"><span>GraphQL</span></div>
+                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap"><span>Bootstrap</span></div>
+             
+                <!-- AI & Data -->
+                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="AI/ML"><span>Tensorflow</span></div>
+             
+                <!-- Testing -->
+                <div class="tech-item"><img src="https://jestjs.io/img/opengraph.png" alt="Jest" style="object-fit: contain; width: 80px;"><span>Jest</span></div>
+             
+                <!-- Visualization -->
+                <div class="tech-item"><img src="https://cdn.worldvectorlogo.com/logos/tableau-software.svg" alt="Tableau"><span>Tableau</span></div>
+             
+                <!-- Cloud -->
+                <div class="tech-item"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/amazonaws.svg" alt="AWS"><span>AWS</span></div>
+                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure"><span>Azure</span></div>
+             
+                <!-- Prototype -->
+                <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma"><span>Figma</span></div>
+              </div>
+            </div>
+ 
         </section>
         <section id="experience" class="fade-in">
     <div class="container">
@@ -1337,152 +1441,103 @@ scalable cloud-based solutions.</li>
                 <div class="projects-grid">
                     <div class="project-card">
                         <div class="project-image">
-                            <i class="fas fa-brain"></i>
-                        </div>
+                            <img src="https://images.unsplash.com/photo-1526025894582-d61942dd4686?q=80&w=1943&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="AI Project" height="220px">
+                          </div>
+                          
+                          
                         <div class="project-content">
-                            <h3 class="project-title">AI-Powered Chatbot</h3>
-                            <p class="project-description">Developed an intelligent conversational AI using NLP and deep learning techniques. Integrated with cloud services for scalable deployment.</p>
+                            <h3 class="project-title">🌤️ GoWeather – Smart Weather Assistant
+                            </h3>
+                            <p class="project-description">Developed an advanced weather tracking web app using Go (Gin), MySQL, and OpenWeatherMap APIs. Features real-time weather updates, global forecasts, chat, and smart activity suggestions in a responsive, animated UI.</p>
                             <div class="project-tags">
-                                <span class="project-tag">Python</span>
-                                <span class="project-tag">TensorFlow</span>
-                                <span class="project-tag">AWS</span>
-                                <span class="project-tag">Flask</span>
+                                <span class="project-tag">Go</span>
+                                <span class="project-tag">Gin</span>
+                                <span class="project-tag">MySQL</span>
+                                <span class="project-tag">JavaScript</span>
+                                <span class="project-tag">OpenWeatherMap API</span>
                             </div>
                             <div class="project-links">
-                                <a href="#" class="project-link">
+                                <a href="https://github.com/HKanaparthi/Weather-Tracking-app" class="project-link">
                                     <i class="fab fa-github"></i> Code
                                 </a>
-                                <a href="#" class="project-link">
-                                    <i class="fas fa-external-link-alt"></i> Live Demo
-                                </a>
-                                <span class="project-year">2024</span>
+                               
+                                <span class="project-year">2025</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="project-card">
-                        <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1634910409614-71a507e13588?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="AI Project" height="220px">
+                          </div>
                         <div class="project-content">
-                            <h3 class="project-title">Stock Market Predictor</h3>
-                            <p class="project-description">Machine learning model for stock price prediction using LSTM networks and technical indicators. Deployed on cloud infrastructure.</p>
+                            <h3 class="project-title">🎵 Bailando: Music-to-3D Dance Generation (CVPR 2022 Reproduction)</h3>
+                            <p class="project-description">Reproduced and executed the Bailando project — a CVPR 2022 oral paper — to generate 3D dance animations conditioned on music using GPT-based actor-critic reinforcement learning. Set up AIST++ dataset, SMPL pose models, and preprocessed motion/audio data. Ran full training pipeline including VQ-VAE, GPT, and actor-critic fine-tuning stages.</p>
                             <div class="project-tags">
                                 <span class="project-tag">Python</span>
                                 <span class="project-tag">PyTorch</span>
-                                <span class="project-tag">Pandas</span>
-                                <span class="project-tag">Docker</span>
+                                <span class="project-tag">FFmpeg</span>
+                                <span class="project-tag">SMPL</span>
+                                <span class="project-tag">AIST++ Dataset</span>
                             </div>
                             <div class="project-links">
-                                <a href="#" class="project-link">
+                                <a href="https://github.com/HKanaparthi/BAILANDOPROJECTCCN" class="project-link">
                                     <i class="fab fa-github"></i> Code
                                 </a>
-                                <a href="#" class="project-link">
-                                    <i class="fas fa-external-link-alt"></i> Demo
-                                </a>
+                                
                                 <span class="project-year">2024</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="project-card">
-                        <div class="project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                            <i class="fas fa-cloud"></i>
-                        </div>
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1595079676339-1534801ad6cf?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="AI Project" height="260px">
+                          </div>
                         <div class="project-content">
-                            <h3 class="project-title">Cloud Infrastructure Automation</h3>
-                            <p class="project-description">Automated cloud infrastructure deployment using Infrastructure as Code principles with Terraform and AWS services.</p>
+                            <h3 class="project-title">QR-Based Attendance System</h3>
+                            <p class="project-description">Developed a web application to enable professors to track student attendance using QR codes with location-based validation.</p>
                             <div class="project-tags">
-                                <span class="project-tag">Terraform</span>
-                                <span class="project-tag">AWS</span>
-                                <span class="project-tag">CI/CD</span>
-                                <span class="project-tag">Kubernetes</span>
+                                <span class="project-tag">React.js</span>
+                                <span class="project-tag">Node.js</span>
+                                <span class="project-tag">Google Maps API</span>
+                                <span class="project-tag">MongoDB</span>
                             </div>
                             <div class="project-links">
-                                <a href="#" class="project-link">
-                                    <i class="fab fa-github"></i> Code
-                                </a>
-                                <a href="#" class="project-link">
-                                    <i class="fas fa-book"></i> Documentation
-                                </a>
-                                <span class="project-year">2023</span>
+                                
+                                <span class="project-year">2024</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="project-card">
-                        <div class="project-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                            <i class="fas fa-eye"></i>
-                        </div>
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1674027444485-cec3da58eef4?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="AI Project" height="220px">
+                          </div>
                         <div class="project-content">
-                            <h3 class="project-title">Computer Vision System</h3>
-                            <p class="project-description">Real-time object detection and classification system using computer vision techniques for industrial applications.</p>
+                            <h3 class="project-title">Missing Child Classification System</h3>
+                            <p class="project-description">Built a deep learning-based face recognition system using VGG-Face to classify missing children with 99.41% accuracy. Deployed via a Django web portal for image upload and automated classification.</p>
                             <div class="project-tags">
                                 <span class="project-tag">OpenCV</span>
-                                <span class="project-tag">YOLO</span>
+                                <span class="project-tag">CNN</span>
                                 <span class="project-tag">Python</span>
-                                <span class="project-tag">TensorFlow</span>
+                                <span class="project-tag">Django</span>
                             </div>
                             <div class="project-links">
-                                <a href="#" class="project-link">
-                                    <i class="fab fa-github"></i> Code
-                                </a>
-                                <a href="#" class="project-link">
-                                    <i class="fas fa-play"></i> Video Demo
-                                </a>
+                                
+                                <a href="./2000030442_Lineysha and Thevan Software Technologies.docx.pdf" class="project-link" download>
+                                    <i class="fas fa-file-pdf"></i> Documentation
+                                  </a>
+                                  
                                 <span class="project-year">2023</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="project-card">
-                        <div class="project-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Full-Stack Web Application</h3>
-                            <p class="project-description">Modern web application with React frontend and Node.js backend, deployed on cloud infrastructure with CI/CD pipeline.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">React</span>
-                                <span class="project-tag">Node.js</span>
-                                <span class="project-tag">MongoDB</span>
-                                <span class="project-tag">AWS</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="#" class="project-link">
-                                    <i class="fab fa-github"></i> Code
-                                </a>
-                                <a href="#" class="project-link">
-                                    <i class="fas fa-external-link-alt"></i> Live Site
-                                </a>
-                                <span class="project-year">2023</span>
-                            </div>
-                        </div>
-                    </div>
+                    
 
-                    <div class="project-card">
-                        <div class="project-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">IoT Data Analytics Platform</h3>
-                            <p class="project-description">Real-time data processing and analytics platform for IoT devices using cloud services and machine learning.</p>
-                            <div class="project-tags">
-                                <span class="project-tag">Python</span>
-                                <span class="project-tag">Apache Kafka</span>
-                                <span class="project-tag">AWS IoT</span>
-                                <span class="project-tag">Elasticsearch</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="#" class="project-link">
-                                    <i class="fab fa-github"></i> Code
-                                </a>
-                                <a href="#" class="project-link">
-                                    <i class="fas fa-chart-bar"></i> Dashboard
-                                </a>
-                                <span class="project-year">2023</span>
-                            </div>
-                        </div>
+                    
+                        
                     </div>
                 </div>
             </div>
@@ -1555,13 +1610,7 @@ scalable cloud-based solutions.</li>
                         <div class="cert-org">Microsoft Azure</div>
                     </div>
 
-                    <div class="cert-card">
-                        <div class="cert-icon" style="background: #ff6f00;">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="cert-title">TensorFlow Developer</div>
-                        <div class="cert-org">TensorFlow</div>
-                    </div>
+                    
 
                     <div class="cert-card">
                         <div class="cert-icon" style="background: #326ce5;">
