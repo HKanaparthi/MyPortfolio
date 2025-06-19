@@ -11,6 +11,134 @@
             padding: 0;
             box-sizing: border-box;
         }
+        /* Animated Role Cycling */
+.animated-role {
+    position: relative;
+    display: inline-block;
+    min-width: 300px;
+}
+
+.animated-role::after {
+    content: '';
+    position: absolute;
+    right: -5px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #3b82f6;
+    animation: blink 1s infinite;
+}
+
+.animated-role::before {
+    content: 'Full Stack Developer';
+    animation: textRotate 6s infinite;
+}
+
+@keyframes textRotate {
+    0%, 25% { content: 'Full Stack Developer'; }
+    33%, 58% { content: 'ML Engineer'; }
+    66%, 91% { content: 'Cloud Enthusiast'; }
+    100% { content: 'Full Stack Developer'; }
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+/* Alternative smooth transition version */
+.animated-role-smooth {
+    position: relative;
+    display: inline-block;
+    min-width: 300px;
+    overflow: hidden;
+}
+
+.role-text {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(100%);
+    animation: slideUp 6s infinite;
+}
+
+.role-text:nth-child(1) { animation-delay: 0s; }
+.role-text:nth-child(2) { animation-delay: 2s; }
+.role-text:nth-child(3) { animation-delay: 4s; }
+
+@keyframes slideUp {
+    0%, 15% { 
+        opacity: 0; 
+        transform: translateY(100%); 
+    }
+    20%, 80% { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+    85%, 100% { 
+        opacity: 0; 
+        transform: translateY(-100%); 
+    }
+}
+
+/* Typewriter Animation */
+.typewriter {
+    overflow: hidden;
+    border-right: 3px solid #3b82f6;
+    white-space: nowrap;
+    animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+    display: inline-block;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #3b82f6; }
+}
+
+/* Fade-in animation for each line */
+.hero h1 {
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.5s;
+}
+
+.hero p {
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 1s;
+}
+
+.hero-buttons {
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 1.5s;
+}
+
+.social-links {
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 2s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Updated floating icons colors */
+.icon-1 { background: #3b82f6; } /* Code icon - blue */
+.icon-2 { background: #10b981; } /* ML/Brain icon - green */
+.icon-3 { background: #f59e0b; } /* Cloud icon - orange */
+
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -97,14 +225,14 @@
 
         /* Hero Section */
         .hero {
-            padding: 200px 0 80px;
+            padding: 140px 0 80px;
             text-align: center;
             position: relative;
         }
 
         .hero-content {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
             gap: 4rem;
             max-width: 1000px;
@@ -1036,40 +1164,48 @@ body.dark .skills-griddd .tech-item:hover {
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <h1>Hey,<br>I am <span class="highlight">Harsha</span></h1>
-                        <p>I am a passionate AI & Cloud Enthusiast.</p>
-                        <div class="hero-buttons">
-                            <a href="#" class="btn btn-primary">
-                                <i class="fas fa-download"></i>
-                                Download Resume
-                            </a>
-                            <a href="mailto:harshakanaparthi03@gmail.com?subject=Contact%20from%20Portfolio&body=Hi%20Harsha%2C" class="btn btn-secondary">
-                                <i class="fas fa-envelope"></i>
-                                Get in Touch
-                            </a>
-                            
-                        </div>
-                        <div class="social-links">
-                            <a href="https://www.linkedin.com/in/harsha2003/"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://github.com/HKanaparthi"><i class="fab fa-github"></i></a>
-                            <a href="mailto:harshakanaparthi03@gmail.com"><i class="fas fa-envelope"></i></a>
-
-                        </div>
-                    </div>
-                    <div class="hero-image">
-                        <img src="./Firstpic.jpeg">
-                        <div class="floating-icons icon-1"><i class="fas fa-code"></i></div>
-                        <div class="floating-icons icon-2"><i class="fas fa-cloud"></i></div>
-                        <div class="floating-icons icon-3"><i class="fas fa-brain"></i></div>
-                    </div>
+      <!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <!-- Left side: Text -->
+            <div class="hero-text">
+                <h1>
+                    Hey there<br>
+                    I am <span class="highlight">Harsha</span><br>
+                    I am a<br>
+                    <span class="highlight animated-role"></span>
+                </h1>
+                
+                <p>Crafting intelligent web solutions with machine learning and cloud technologies.</p>
+                <div class="hero-buttons">
+                    <a href="./Harsha's Resume.pdf" class="btn btn-primary" target="_blank">
+                        <i class="fas fa-download"></i>
+                        View Resume
+                    </a>
+                    <a href="mailto:harshakanaparthi03@gmail.com?subject=Contact%20from%20Portfolio&body=Hi%20Harsha%2C" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        Get in Touch
+                    </a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/harsha2003/"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/HKanaparthi"><i class="fab fa-github"></i></a>
+                    <a href="mailto:harshakanaparthi03@gmail.com"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
-        </section>
+
+            <!-- Right side: Image -->
+            <div class="hero-image" >
+                <img src="./Firstpic.jpeg" alt="Harsha Profile" >
+                <div class="floating-icons icon-1"><i class="fas fa-code"></i></div>
+                <div class="floating-icons icon-2"><i class="fas fa-brain"></i></div>
+                <div class="floating-icons icon-3"><i class="fas fa-cloud"></i></div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
         <!-- About Section -->
         <section id="about" class="fade-in">
