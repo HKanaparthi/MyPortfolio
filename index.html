@@ -1129,6 +1129,13 @@ body.dark .skills-griddd .tech-item:hover {
   background: #374151;
 }
 
+        /* AI Assistant announcement pulse animation */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
         /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
@@ -1179,6 +1186,11 @@ body.dark .skills-griddd .tech-item:hover {
                 </h1>
                 
                 <p>Crafting intelligent web solutions with machine learning and cloud technologies.</p>
+
+                <div style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; padding: 0.75rem 1rem; border-radius: 12px; margin-bottom: 1.5rem; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); animation: pulse 2s infinite;">
+                    🤖 <strong>New!</strong> Chat with my AI-powered assistant - Ask about my projects, skills, and experience! Look for the chatbot in the bottom-right corner.
+                </div>
+
                 <div class="hero-buttons">
                     <a href="./Resume.pdf" class="btn btn-primary" target="_blank">
                         <i class="fas fa-download"></i>
@@ -1748,6 +1760,9 @@ scalable cloud-based solutions.</li>
            
         </div>
     </footer>
+
+    <!-- Enhanced AI Chat Widget -->
+    <script src="./enhanced-ai-assistant.js" data-enhanced-ai data-auto-init></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

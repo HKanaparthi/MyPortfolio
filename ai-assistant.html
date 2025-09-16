@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Digital Harsha</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            color: #333;
+        }
+
+        .chat-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            height: calc(100vh - 4rem);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 16px 16px 0 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .chat-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .chat-header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            background: white;
+            border-left: 1px solid #e2e8f0;
+            border-right: 1px solid #e2e8f0;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message.user .message-content {
+            background: #3b82f6;
+            color: white;
+            margin-left: auto;
+        }
+
+        .message.assistant .message-content {
+            background: #f1f5f9;
+            color: #334155;
+        }
+
+        .message-content {
+            padding: 0.75rem 1rem;
+            border-radius: 16px;
+            max-width: 80%;
+            word-wrap: break-word;
+            line-height: 1.5;
+        }
+
+        .message-content pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 0.75rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+            font-size: 0.875rem;
+        }
+
+        .message-content code {
+            background: #334155;
+            color: #fbbf24;
+            padding: 0.125rem 0.25rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+
+        .avatar.user {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .avatar.assistant {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+
+        .chat-input {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-top: none;
+            border-radius: 0 0 16px 16px;
+            padding: 1rem;
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .input-field {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 24px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-field:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .send-button {
+            padding: 0.75rem 1.5rem;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .send-button:hover:not(:disabled) {
+            background: #2563eb;
+        }
+
+        .send-button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            background: #f1f5f9;
+            border-radius: 16px;
+            max-width: fit-content;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #64748b;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+            30% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+        }
+
+        .suggested-questions {
+            padding: 1rem;
+            background: #f8fafc;
+            border-left: 1px solid #e2e8f0;
+            border-right: 1px solid #e2e8f0;
+        }
+
+        .suggested-questions h3 {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .question-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .question-chip {
+            padding: 0.5rem 0.75rem;
+            background: white;
+            border: 1px solid #d1d5db;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .question-chip:hover {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .error-message {
+            background: #fee2e2;
+            color: #dc2626;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin: 0.5rem 0;
+            border-left: 4px solid #dc2626;
+        }
+
+        @media (max-width: 768px) {
+            .chat-container {
+                margin: 1rem auto;
+                height: calc(100vh - 2rem);
+            }
+
+            .message-content {
+                max-width: 90%;
+            }
+
+            .question-chips {
+                flex-direction: column;
+            }
+
+            .question-chip {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>💬 Chat with Digital Harsha</h1>
+            <p>Ask me anything about my experience, projects, skills, or career journey!</p>
+        </div>
+
+        <div class="suggested-questions">
+            <h3>💡 Try asking me about:</h3>
+            <div class="question-chips">
+                <div class="question-chip" onclick="askQuestion('Tell me about your AI projects')">AI Projects</div>
+                <div class="question-chip" onclick="askQuestion('What cloud technologies do you work with?')">Cloud Experience</div>
+                <div class="question-chip" onclick="askQuestion('Describe your publications')">Research Publications</div>
+                <div class="question-chip" onclick="askQuestion('What programming languages are you strongest in?')">Technical Skills</div>
+                <div class="question-chip" onclick="askQuestion('Tell me about your academic background')">Education</div>
+                <div class="question-chip" onclick="askQuestion('What motivates you in technology?')">Career Goals</div>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="message assistant">
+                <div class="avatar assistant">H</div>
+                <div class="message-content">
+                    Hey there! 👋 I'm a digital version of Harsha, trained to think and respond just like him. I can tell you about his projects, technical expertise, research publications, and career journey. I know everything about his work in AI/ML, cloud computing, and full-stack development. What would you like to know?
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-input">
+            <input
+                type="text"
+                class="input-field"
+                id="messageInput"
+                placeholder="Ask me anything about Harsha's work, skills, or experience..."
+                onkeypress="handleKeyPress(event)"
+            />
+            <button class="send-button" id="sendButton" onclick="sendMessage()">
+                <span>Send</span>
+                <span>📤</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Knowledge base containing Harsha's information
+        const knowledgeBase = {
+            personal: {
+                name: "Harsha Kanaparthi",
+                location: "Charlotte, NC",
+                email: "harshakanaparthi03@gmail.com",
+                phone: "704 299 4007",
+                linkedin: "linkedin.com/in/harsha2003/",
+                github: "github.com/HKanaparthi",
+                portfolio: "hkanaparthi.github.io/MyPortfolio"
+            },
+            education: {
+                masters: {
+                    university: "University of North Carolina at Charlotte",
+                    degree: "Masters of Science in Computer Science",
+                    expected: "May 2026",
+                    gpa: "4.0/4.0"
+                },
+                bachelors: {
+                    university: "Koneru Lakshmaiah University",
+                    degree: "Bachelors in Computer Science",
+                    period: "Sep 2020 - May 2024",
+                    gpa: "9.47/10"
+                }
+            },
+            experience: [
+                {
+                    title: "Artificial Intelligence Intern",
+                    company: "Lineysha & Thevan Software Company",
+                    location: "Andhra Pradesh, India",
+                    period: "July 2023 – Dec 2023",
+                    achievements: [
+                        "Collaborated in a team to design and develop a facial recognition web application for identifying missing children, achieving 99.41% accuracy using CNNs",
+                        "Built and integrated the model into a web application using Flask and React, enabling real-time image processing",
+                        "Preprocessed large image datasets, applied data augmentation, and evaluated model performance using precision, recall, and F1-score"
+                    ]
+                },
+                {
+                    title: "Intern - RPA & Cloud Computing",
+                    company: "AICTE (All India Council for Technical Education)",
+                    location: "Virtual",
+                    period: "October 2021 – May 2022",
+                    achievements: [
+                        "Created chatbots and automated email workflows using Blue Prism to improve task efficiency",
+                        "Gained hands-on experience with AWS services like EC2, S3, and Lambda for deploying scalable cloud solutions",
+                        "Integrated RPA bots with cloud platforms to automate data handling, reporting, and system notifications"
+                    ]
+                },
+                {
+                    title: "President/Advisor at School Of Competitive Coding",
+                    company: "Koneru Lakshmaiah University",
+                    location: "Andhra Pradesh, India",
+                    period: "2022 - 2024",
+                    achievements: [
+                        "Organized and hosted coding workshops, contests, and hackathons with 100+ student participants",
+                        "Mentored and trained 50+ junior students in data structures, algorithms, and problem-solving techniques",
+                        "Coordinated with faculty to deliver regular sessions on competitive coding",
+                        "Managed end-to-end logistics, event planning, and community outreach"
+                    ]
+                }
+            ],
+            publications: [
+                {
+                    title: "Revolutionizing Road Safety: CNN-based Traffic Sign Recognition",
+                    year: "2024",
+                    doi: "10.1109/ICICV62344.2024.00014",
+                    url: "https://ieeexplore.ieee.org/document/10511094"
+                },
+                {
+                    title: "Skin Disease Detection and Recommendation System using Deep Learning and Cloud Computing",
+                    year: "2023",
+                    doi: "10.1109/ICCES57224.2023.10192759",
+                    url: "https://ieeexplore.ieee.org/document/10192759"
+                }
+            ],
+            projects: [
+                {
+                    name: "GoWeather – Smart Weather Assistant",
+                    description: "Advanced weather tracking web app using Go (Gin), MySQL, and OpenWeatherMap APIs with real-time updates, global forecasts, chat, and smart activity suggestions",
+                    technologies: ["Go", "Gin", "MySQL", "JavaScript", "OpenWeatherMap API"],
+                    year: "2025",
+                    github: "https://github.com/HKanaparthi/Weather-Tracking-app"
+                },
+                {
+                    name: "Bailando: Music-to-3D Dance Generation",
+                    description: "Reproduced CVPR 2022 paper to generate 3D dance animations conditioned on music using GPT-based actor-critic reinforcement learning",
+                    technologies: ["Python", "PyTorch", "FFmpeg", "SMPL", "AIST++ Dataset"],
+                    year: "2024",
+                    github: "https://github.com/HKanaparthi/BAILANDOPROJECTCCN"
+                },
+                {
+                    name: "QR-Based Attendance System",
+                    description: "Web application enabling professors to track student attendance using QR codes with location-based validation",
+                    technologies: ["React.js", "Node.js", "Google Maps API", "MongoDB"],
+                    year: "2024"
+                },
+                {
+                    name: "Missing Child Classification System",
+                    description: "Deep learning-based face recognition system using VGG-Face and CNN to classify missing children with 99.41% accuracy",
+                    technologies: ["OpenCV", "CNN", "Python", "Django"],
+                    year: "2023"
+                }
+            ],
+            skills: {
+                languages: ["C", "C++", "Java", "Python", "HTML", "CSS", "JavaScript", "PHP"],
+                databases: ["PostgreSQL", "SQL", "MongoDB"],
+                webTechnologies: ["React.js", "Node.js", "Angular", "TypeScript", "GraphQL", "Jest", "Bootstrap", "RESTful APIs"],
+                testing: ["Unit Testing", "Integration Testing"],
+                visualization: ["Tableau"],
+                cloud: ["AWS", "Azure"],
+                prototype: ["Figma"],
+                mlLibraries: ["TensorFlow", "PyTorch", "Keras", "scikit-learn", "NumPy", "Pandas"]
+            },
+            certifications: [
+                "TensorFlow Developer Associate - Google",
+                "Azure Developer Associate - AZ 204 - Microsoft Azure",
+                "Azure Fundamentals - AZ 900 - Microsoft Azure",
+                "Advanced Automation Anywhere RPA - Automation Anywhere",
+                "Oracle Certified Foundations Associate - Oracle"
+            ],
+            personality: {
+                communicationStyle: "Technical precision with specific metrics, enthusiastic about AI/ML and cloud technologies, professional but approachable, achievement-focused",
+                interests: ["Artificial Intelligence", "Machine Learning", "Cloud Computing", "Computer Vision", "Research", "Competitive Programming"],
+                strengths: ["Problem-solving", "Technical leadership", "Research", "Mentoring", "Full-stack development"]
+            }
+        };
+
+        // Predefined responses for common questions
+        const predefinedResponses = {
+            greeting: [
+                "Hello! I'm excited to talk with you about my journey in AI and technology. What would you like to know?",
+                "Hi there! I'm passionate about AI, cloud computing, and building intelligent solutions. How can I help you today?",
+                "Hey! Great to meet you. I'd love to share my experience in machine learning and software development. What interests you most?"
+            ],
+            about: [
+                "I'm Harsha Kanaparthi, currently pursuing a Master's in Computer Science at UNC Charlotte with a perfect 4.0 GPA. I'm passionate about AI/ML and cloud technologies, with hands-on experience in building intelligent applications that solve real-world problems. My expertise spans from deep learning and computer vision to full-stack web development and cloud architecture.",
+                "I'm a Computer Science graduate student and AI enthusiast with a strong background in machine learning, cloud computing, and software development. I've achieved 99.41% accuracy in facial recognition systems, published research in IEEE conferences, and led competitive programming initiatives. I love combining theoretical knowledge with practical applications."
+            ],
+            skills: [
+                "My technical toolkit is quite comprehensive! I'm strongest in Python for AI/ML work with TensorFlow and PyTorch, and I'm proficient in full-stack development using React, Node.js, and various databases. On the cloud side, I have hands-on experience with AWS services like EC2, S3, and Lambda, plus Azure certifications. I also work with Go, Java, and have published research on CNN-based applications.",
+                "I specialize in the intersection of AI and cloud technologies. My core strengths include machine learning (TensorFlow, PyTorch, scikit-learn), full-stack web development (React, Node.js, Django, Flask), cloud platforms (AWS, Azure), and databases (PostgreSQL, MongoDB). I'm also experienced in computer vision, RPA, and have strong fundamentals in algorithms and data structures from my competitive programming background."
+            ]
+        };
+
+        let conversationHistory = [];
+        let isTyping = false;
+
+        function addMessage(content, isUser = false) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'assistant'}`;
+
+            messageDiv.innerHTML = `
+                <div class="avatar ${isUser ? 'user' : 'assistant'}">${isUser ? 'U' : 'H'}</div>
+                <div class="message-content">${content}</div>
+            `;
+
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const chatMessages = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message assistant';
+            typingDiv.id = 'typing-indicator';
+
+            typingDiv.innerHTML = `
+                <div class="avatar assistant">H</div>
+                <div class="typing-indicator">
+                    <div class="typing-dots">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                    <span style="color: #64748b; font-size: 0.875rem;">Thinking...</span>
+                </div>
+            `;
+
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const typingElement = document.getElementById('typing-indicator');
+            if (typingElement) {
+                typingElement.remove();
+            }
+        }
+
+        function generateResponse(userMessage) {
+            const message = userMessage.toLowerCase();
+
+            // Simple pattern matching for common queries
+            if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
+                return getRandomResponse(predefinedResponses.greeting);
+            }
+
+            if (message.includes('about') || message.includes('who are you') || message.includes('introduce')) {
+                return getRandomResponse(predefinedResponses.about);
+            }
+
+            if (message.includes('skill') || message.includes('technology') || message.includes('programming')) {
+                return getRandomResponse(predefinedResponses.skills);
+            }
+
+            if (message.includes('project')) {
+                return generateProjectResponse(message);
+            }
+
+            if (message.includes('publication') || message.includes('research') || message.includes('paper')) {
+                return generatePublicationResponse();
+            }
+
+            if (message.includes('education') || message.includes('academic') || message.includes('university')) {
+                return generateEducationResponse();
+            }
+
+            if (message.includes('experience') || message.includes('internship') || message.includes('work')) {
+                return generateExperienceResponse();
+            }
+
+            if (message.includes('cloud') || message.includes('aws') || message.includes('azure')) {
+                return generateCloudResponse();
+            }
+
+            if (message.includes('ai') || message.includes('machine learning') || message.includes('ml') || message.includes('deep learning')) {
+                return generateAIResponse();
+            }
+
+            if (message.includes('certification')) {
+                return generateCertificationResponse();
+            }
+
+            if (message.includes('contact') || message.includes('reach') || message.includes('email')) {
+                return generateContactResponse();
+            }
+
+            // Default response for unmatched queries
+            return "That's an interesting question! While I have extensive knowledge about Harsha's background in AI, cloud computing, software development, and research, I might need more context to give you the best answer. Could you ask me something more specific about his projects, skills, experience, or academic background?";
+        }
+
+        function getRandomResponse(responses) {
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+
+        function generateProjectResponse(message) {
+            if (message.includes('goweather') || message.includes('weather')) {
+                const project = knowledgeBase.projects.find(p => p.name.includes('GoWeather'));
+                return `GoWeather is one of my recent projects I'm really proud of! 🌤️ I developed an advanced weather tracking web application using Go with the Gin framework, MySQL database, and OpenWeatherMap APIs. What makes it special is the real-time weather updates, global forecasts, integrated chat functionality, and smart activity suggestions based on weather conditions. The responsive, animated UI provides an excellent user experience. You can check out the code on my GitHub: ${project.github}`;
+            }
+
+            if (message.includes('bailando') || message.includes('dance') || message.includes('3d')) {
+                return `Bailando was an incredibly challenging and rewarding project! 💃 I reproduced a CVPR 2022 oral paper that generates 3D dance animations conditioned on music using GPT-based actor-critic reinforcement learning. This involved setting up the AIST++ dataset, SMPL pose models, preprocessing motion and audio data, and running the full training pipeline including VQ-VAE, GPT, and actor-critic fine-tuning stages. It was a deep dive into cutting-edge AI research combining computer vision, audio processing, and reinforcement learning.`;
+            }
+
+            if (message.includes('missing child') || message.includes('facial recognition')) {
+                return `The Missing Child Classification System was developed during my AI internship and achieved 99.41% accuracy! 👶 I built a deep learning-based face recognition system using VGG-Face architecture and CNNs to classify missing children. The system was deployed through a Django web portal with OpenCV integration for real-time image upload and automated classification. This project combines my passion for AI with social impact - using technology to help reunite families.`;
+            }
+
+            if (message.includes('qr') || message.includes('attendance')) {
+                return `The QR-based Attendance System was designed to solve a real classroom problem! 📱 I created a web application that enables professors to track student attendance using dynamic QR codes that refresh every 3 minutes to prevent spoofing. What's clever about it is the Google Maps API integration that restricts check-ins to within 0.3 miles of the session location. Built with React.js, Node.js, Express.js, and MongoDB, it's both secure and user-friendly.`;
+            }
+
+            return `I've worked on some exciting projects! My key projects include GoWeather (a smart weather assistant built with Go), Bailando (3D dance generation from music using AI), a Missing Child Classification System (99.41% accuracy with CNNs), and a QR-based Attendance System with location validation. Each project showcases different aspects of my skills - from full-stack development to cutting-edge AI research. Which one interests you most?`;
+        }
+
+        function generatePublicationResponse() {
+            const pub1 = knowledgeBase.publications[0];
+            const pub2 = knowledgeBase.publications[1];
+            return `I'm proud to have published research in IEEE conferences! 📚 My publications include:
+
+1. **"${pub1.title}"** (2024) - This work focuses on revolutionizing road safety through CNN-based traffic sign recognition systems. DOI: ${pub1.doi}
+
+2. **"${pub2.title}"** (2023) - This research combines deep learning with cloud computing for automated skin disease detection and recommendation systems. DOI: ${pub2.doi}
+
+Both publications demonstrate my commitment to applying AI/ML solutions to real-world problems in safety and healthcare domains. These research experiences have strengthened my technical writing and given me insights into the peer review process.`;
+        }
+
+        function generateEducationResponse() {
+            const masters = knowledgeBase.education.masters;
+            const bachelors = knowledgeBase.education.bachelors;
+            return `My academic journey has been quite strong! 🎓 I'm currently pursuing a **${masters.degree}** at **${masters.university}** with a perfect **${masters.gpa}** GPA, expected to graduate in ${masters.expected}.
+
+I completed my **${bachelors.degree}** from **${bachelors.university}** (${bachelors.period}) with an impressive **${bachelors.gpa}** GPA. During my undergraduate years, I was actively involved in competitive programming and served as President/Advisor of the School of Competitive Coding, where I organized events for 100+ students and mentored 50+ junior students.
+
+The rigorous academic foundation has prepared me well for tackling complex problems in AI, cloud computing, and software development.`;
+        }
+
+        function generateExperienceResponse() {
+            return `My professional experience spans AI research, cloud computing, and leadership roles! 💼
+
+**AI Intern at Lineysha & Thevan Software Company** (July 2023 – Dec 2023): I led the development of a facial recognition web application for missing children identification, achieving 99.41% accuracy using CNNs. Built the full stack with Flask and React for real-time image processing.
+
+**RPA & Cloud Computing Intern at AICTE** (Oct 2021 – May 2022): I worked with Blue Prism for automation, gained hands-on AWS experience (EC2, S3, Lambda), and integrated RPA bots with cloud platforms.
+
+**President/Advisor at School of Competitive Coding** (2022-2024): I organized hackathons and workshops for 100+ students, mentored 50+ juniors in algorithms and data structures, and managed large-scale technical events.
+
+Each role has contributed to my technical depth and leadership skills, preparing me for challenging problems in AI and cloud technologies.`;
+        }
+
+        function generateCloudResponse() {
+            return `I'm passionate about cloud technologies and have hands-on experience with major platforms! ☁️
+
+**AWS Experience**: I've worked extensively with EC2 for compute, S3 for storage, and Lambda for serverless functions during my AICTE internship. I've deployed and managed scalable cloud-based solutions and integrated RPA bots with AWS services.
+
+**Azure Certifications**: I hold both **Azure Developer Associate (AZ-204)** and **Azure Fundamentals (AZ-900)** certifications, demonstrating my proficiency with Microsoft's cloud platform.
+
+**Practical Applications**: I've used cloud platforms to deploy ML models, automate workflows, handle large datasets, and create scalable web applications. My approach combines cloud architecture best practices with cost optimization and security considerations.
+
+Cloud computing is the backbone of modern applications, and I love how it enables us to build and scale AI solutions efficiently!`;
+        }
+
+        function generateAIResponse() {
+            return `AI and Machine Learning are my core passions! 🤖 I have deep experience across the entire ML pipeline:
+
+**Deep Learning**: Proficient with TensorFlow and PyTorch for building neural networks. I've achieved 99.41% accuracy in facial recognition using CNNs and worked on cutting-edge research like music-to-3D dance generation.
+
+**Computer Vision**: Extensive work with OpenCV, image preprocessing, data augmentation, and evaluation metrics (precision, recall, F1-score). My traffic sign recognition research was published in IEEE.
+
+**Research**: Published research on CNN-based applications in safety and healthcare domains. I've reproduced CVPR papers and understand the latest trends in AI research.
+
+**Practical Applications**: I don't just understand the theory - I build production-ready AI systems deployed through web applications with real-time processing capabilities.
+
+**Tools & Frameworks**: TensorFlow, PyTorch, Keras, scikit-learn, NumPy, Pandas - I'm comfortable across the entire ML ecosystem.
+
+What excites me most is applying AI to solve real-world problems and making complex technology accessible through intuitive interfaces!`;
+        }
+
+        function generateCertificationResponse() {
+            const certs = knowledgeBase.certifications;
+            return `I believe in continuous learning and have earned several key certifications! 🏆
+
+• **${certs[0]}** - Validates my deep learning and TensorFlow expertise
+• **${certs[1]}** - Advanced Azure development skills for cloud applications
+• **${certs[2]}** - Foundational knowledge of Azure cloud services
+• **${certs[3]}** - Advanced automation and RPA capabilities
+• **${certs[4]}** - Database and foundational programming skills
+
+These certifications complement my practical experience and demonstrate my commitment to staying current with industry standards. They've been instrumental in landing internships and building credibility in AI, cloud computing, and automation domains.
+
+The combination of academic rigor, hands-on projects, and industry certifications gives me a well-rounded technical foundation.`;
+        }
+
+        function generateContactResponse() {
+            const contact = knowledgeBase.personal;
+            return `I'd love to connect! Here are the best ways to reach Harsha: 📬
+
+📧 **Email**: ${contact.email}
+📱 **Phone**: ${contact.phone}
+💼 **LinkedIn**: ${contact.linkedin}
+💻 **GitHub**: ${contact.github}
+🌐 **Portfolio**: ${contact.portfolio}
+📍 **Location**: ${contact.location}
+
+Whether you're interested in discussing AI research, cloud architecture, potential collaborations, or just want to chat about technology, I'm always open to meaningful conversations. Feel free to reach out through any of these channels!`;
+        }
+
+        async function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const sendButton = document.getElementById('sendButton');
+            const message = messageInput.value.trim();
+
+            if (!message || isTyping) return;
+
+            // Add user message
+            addMessage(message, true);
+            conversationHistory.push({role: 'user', content: message});
+
+            // Clear input and disable button
+            messageInput.value = '';
+            sendButton.disabled = true;
+            isTyping = true;
+
+            // Show typing indicator
+            showTypingIndicator();
+
+            try {
+                // Simulate thinking time
+                await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000));
+
+                // Generate response
+                const response = generateResponse(message);
+
+                // Hide typing indicator and show response
+                hideTypingIndicator();
+                addMessage(response);
+                conversationHistory.push({role: 'assistant', content: response});
+
+            } catch (error) {
+                hideTypingIndicator();
+                addMessage("I apologize, but I'm having trouble processing your request right now. Please try asking about my projects, skills, experience, or education, and I'll do my best to help!");
+            } finally {
+                sendButton.disabled = false;
+                isTyping = false;
+                messageInput.focus();
+            }
+        }
+
+        function askQuestion(question) {
+            document.getElementById('messageInput').value = question;
+            sendMessage();
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('messageInput').focus();
+        });
+    </script>
+</body>
+</html>
