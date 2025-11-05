@@ -565,7 +565,8 @@ Respond as Harsha would, with technical precision, enthusiasm for AI/cloud tech,
                 "GoWeather - Smart weather app with Go, MySQL, and real-time updates",
                 "Bailando - 3D dance generation from music using AI (CVPR 2022 reproduction)",
                 "Missing Child Classification - 99.41% accuracy facial recognition system",
-                "QR Attendance System - Location-validated attendance tracking"
+                "QR Attendance System - Location-validated attendance tracking",
+                "SPL - Parse Tree Diagram's"
             ],
             skills: [
                 "AI/ML: TensorFlow, PyTorch, Computer Vision, CNNs",
