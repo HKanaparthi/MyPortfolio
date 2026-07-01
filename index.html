@@ -290,31 +290,40 @@ const DATA = {
   ],
   experience: [
     {
-      year: "2025–2026",
+      year: "Aug 2025 – May 2026",
       role: "Graduate Teaching Assistant",
       company: "University of North Carolina at Charlotte",
       location: "Charlotte, NC",
-      desc: "Supported 110+ students across Survey of Programming Languages (Go, Haskell, Swift) and Software Systems Design & Implementation. Student A-grade rate improved from 70% to 90% through structured mentoring and feedback. Designed assignments with 48-hour grading turnaround; implemented lab verification protocols that reduced proxy attendance incidents.",
-      tags: ["Go", "Haskell", "Swift", "Teaching", "Mentoring"],
+      desc: "Supported 110+ students in Survey of Programming Languages (Go, Haskell, Swift) and Software Systems Design & Implementation; A-grade rate improved from 70% to 90% through structured mentoring and code review. Designed assignments with 48-hour grading turnaround; collaborated cross-functionally with faculty to deliver course solutions and maintain platform reliability across two semesters.",
+      tags: ["Go", "Haskell", "Swift", "Teaching", "Mentoring", "Code Review"],
     },
     {
-      year: "Jul–Dec 2023",
-      role: "AI Intern",
-      company: "Lineysha & Thevan Software Technologies",
+      year: "Jun – Dec 2023",
+      role: "Machine Learning Engineer",
+      company: "Lineysha & Thevan Software Company",
       location: "Andhra Pradesh, India",
-      desc: "Built and deployed production ML system for missing child identification using VGG-Face CNN achieving 99.4% facial recognition accuracy across 10K+ images with real-time inference. Architected Flask REST API with similarity search at <500ms latency; reduced inference time 40% via batch processing. Developed full-stack React frontend with role-based access control.",
-      tags: ["Python", "VGG-Face", "CNN", "Flask", "React", "MySQL"],
+      desc: "Built full-stack production system with Python Flask REST API and React/TypeScript frontend; designed cosine similarity search across 10K+ face embeddings achieving 99.4% accuracy at <500ms latency with MySQL and Redis. Reduced inference time 40% through batch processing, embedding caching, and optimized database indexing; implemented JWT authentication and role-based access control serving concurrent users at 99%+ reliability. Deployed VGG-Face CNN with transfer learning for real-time facial recognition; wrote comprehensive unit tests and API documentation.",
+      tags: ["Python", "Flask", "React", "TypeScript", "MySQL", "Redis", "JWT", "VGG-Face CNN"],
     },
     {
-      year: "2021–2023",
+      year: "Jan 2021 – Jun 2023",
       role: "Software Engineer",
       company: "LogicMind",
       location: "Hyderabad, India",
-      desc: "Designed and shipped scalable REST APIs and real-time gameplay services in Python and Node.js supporting 3K+ concurrent users on AWS with 99.5% uptime. Reduced API latency 25% via PostgreSQL query optimization, connection pooling, and Redis caching. Implemented AI-driven matchmaking algorithm improving average session duration by 14%.",
-      tags: ["Python", "Node.js", "AWS", "PostgreSQL", "Redis", "Docker"],
+      desc: "Designed and shipped scalable REST APIs and backend services in Python, Go (Gin), and Java supporting 3K+ concurrent users; owned AWS (EC2, S3, RDS) deployments with Docker and GitHub Actions CI/CD achieving 99.5% uptime. Reduced API latency 25% through PostgreSQL query optimization, connection pooling, and Redis caching; built event-driven analytics pipelines processing 100K+ gameplay events daily for real-time insights. Implemented AI-driven matchmaking algorithm improving average session duration by 14%.",
+      tags: ["Python", "Go", "Java", "AWS", "PostgreSQL", "Redis", "Docker", "GitHub Actions"],
     },
   ],
   projects: [
+    {
+      title: "MegaRepoMind — AI-Powered Repository Intelligence",
+      year: "Jul 2026",
+      desc: "Chat with any GitHub repository. Paste a URL, it auto-clones and indexes the entire codebase, embeds code chunks with OpenAI, stores vectors in PostgreSQL + pgvector, and runs a RAG pipeline so Claude can answer engineering questions with exact file-level citations. What used to take days of onboarding now takes 5 minutes.",
+      tags: ["React", "TypeScript", "FastAPI", "PostgreSQL", "pgvector", "Claude API", "OpenAI", "Docker", "Vercel"],
+      github: "https://github.com/HKanaparthi/MegaRepoMind",
+      demo: "https://mega-repo-mind.vercel.app",
+      highlight: true,
+    },
     {
       title: "Stream – Real-Time E-Commerce Analytics",
       year: "2025–2026",
@@ -1100,7 +1109,7 @@ function ProjectCard({ project, version, accent, idx }) {
           display: "flex", alignItems: "center", justifyContent: "center",
           fontSize: "18px",
         }}>
-          {["📡","🔐","🌳","🌤️","📋"][idx] || "⚙️"}
+          {["🧠","📡","🔐","🌳","🌤️","📋"][idx] || "⚙️"}
         </div>
         <span style={{ fontSize: "12px", color: "#3a5570" }}>{project.year}</span>
       </div>
